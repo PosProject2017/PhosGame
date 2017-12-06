@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : PlayerController {
-
+	bool isPlayable = true;
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +11,11 @@ public class PlayerInput : PlayerController {
 	
 	// Update is called once per frame
 	void Update () {
+//		if (!isPlayable)
+//			return;
+
+
+
 		if (Input.GetKey ("right")) {
 			MoveButtonRight();
 		}
@@ -28,11 +33,14 @@ public class PlayerInput : PlayerController {
 
 		if (Input.GetMouseButtonDown (0)) {
 			MoveTap ();
+			if (isPlayable) {
+				StartCoroutine (AutoMove ());
+				isPlayable = false;
+			}
 		}
-		if(NowMoving) {
-			AutoMove ();
+		if (DoneMove ()) {
+			isPlayable = true;
 		}
-
 
 	}
 
@@ -53,8 +61,14 @@ public class PlayerInput : PlayerController {
 	public override void MoveTap(){
 		base.MoveTap ();
 	}
-	public override void AutoMove(){
-		base.AutoMove ();
+	public override IEnumerator AutoMove(){
+	yield return StartCoroutine(base.AutoMove ());
+	}
+	public override bool DoneMove(){
+		return base.DoneMove ();
 	}
 		
 }
+
+//参考にしたサイト
+///https://gamedev.stackexchange.com/questions/120055/overriding-coroutine-doesnt-execute-base-code

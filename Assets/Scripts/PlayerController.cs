@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour {
 	public float Speed = 0.05f;//移動速度
 	private float Step;
 	public Vector3 ClickPosition;//クリックした位置
-	public bool NowMoving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -50,14 +49,22 @@ public class PlayerController : MonoBehaviour {
 		ClickPosition = Input.mousePosition;
 		ClickPosition.z += 10;
 		ClickPosition = Camera.main.ScreenToWorldPoint (ClickPosition);//カメラ座標を世界座標に
-		NowMoving = true;
+		//NowMoving = true;
 	}
 
-	public virtual void AutoMove(){
+	public virtual IEnumerator AutoMove(){
+			float Step = 5 * Time.deltaTime;
+			while (transform.position != new Vector3 (ClickPosition.x, ClickPosition.y, 0)) {
+				transform.position = Vector2.MoveTowards (transform.position, new Vector2 (ClickPosition.x, ClickPosition.y), Step);
+				yield return new WaitForSeconds (1 / 60f);
+			}
+	}
+
+	public virtual bool DoneMove(){
 		if (transform.position == new Vector3 (ClickPosition.x, ClickPosition.y, 0)) {
-			NowMoving = false;
+			return true;
+		} else {
+			return false;
 		}
-		float Step = 5 * Time.deltaTime;
-		transform.position = Vector2.MoveTowards (transform.position, new Vector2 (ClickPosition.x, ClickPosition.y), Step);
 	}
 }
