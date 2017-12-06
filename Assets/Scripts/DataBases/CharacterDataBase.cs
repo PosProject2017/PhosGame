@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterDataBase : MonoBehaviour {
+
+public class CharacterDataBase{
 
     /// <summary>
     /// キャラクター登録
@@ -16,29 +17,15 @@ public class CharacterDataBase : MonoBehaviour {
     /// </summary>
     /// <param name="characterId"></param>
     /// <returns></returns>
-    public CharacterStuts getCharactetStatus( CharacterIdentifier characterId ) {
-        CharacterStuts characterStuts = new CharacterStuts();
-        characterStuts.setStuts( 0, 0, 0, 0 );
+    public CharacterStatus getCharacterStatus( CharacterStatus status ) {
+        CharacterStatus characterStatus = new CharacterStatus();
 
-        switch( characterId ) {
+        switch( status.type ) {
 
         }
 
-        return characterStuts;
+        return characterStatus;
     }
 }
 
-public class CharacterStuts {
-    public float HP;
-    public float Offence;
-    public float Deffence;
-    public float Speed;
 
-    public void setStuts( float hp, float offence, float deffence, float speed) {
-        HP = hp;
-        Offence = offence;
-        Deffence = deffence;
-        Speed = speed;
-
-    }
-}
