@@ -136,15 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3417b5bbc8c572b4ca460e3ab1a7de7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageId: {x: 0, y: 0}
-  isMainStage: 0
+  stageId: {x: 1, y: 1}
+  isMainStage: 1
+  edgh: {fileID: 0}
   isSubStageMatrix:
-  - column0: 0
+  - column0: 1
+    column1: 1
+    column2: 1
+  - column0: 1
     column1: 0
-    column2: 0
-  - column0: 0
-    column1: 0
-    column2: 0
-  - column0: 0
-    column1: 0
-    column2: 0
+    column2: 1
+  - column0: 1
+    column1: 1
+    column2: 1

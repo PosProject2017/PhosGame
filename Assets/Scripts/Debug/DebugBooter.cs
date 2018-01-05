@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugBooter : MonoBehaviour {
+public class DebugBooter : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         DontDestroyOnLoad(gameObject);
-	}
+    }
 }

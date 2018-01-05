@@ -14,8 +14,8 @@ public class StageAdjuster : MonoBehaviour {
         float stageLength = stageData.stageLengthWidth;
 		float stageHeight = stageData.stageLengthHeight;
 
-        float centerPosX = stageId.x * stageLength + stageLength / 2;
-		float centerPosY = stageId.y * stageHeight + stageHeight / 2;
+        float centerPosX = stageId.x * (stageLength - 1) + stageLength / 2;
+        float centerPosY = stageId.y * (stageHeight - 1) + stageHeight / 2;
 
         return new Vector3(centerPosX, 0, centerPosY);
     }
